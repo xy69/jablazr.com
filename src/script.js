@@ -28,6 +28,8 @@ const catHappy = (event) => {
 }
 
 catElement.addEventListener("mousedown", catHappy)
+catElement.addEventListener("touchstart", catHappy)
+catElement.addEventListener("touchmove", catHappy)
 
 const catNormal = (event) => {
   event.preventDefault()
@@ -38,3 +40,5 @@ const catNormal = (event) => {
 catElement.addEventListener("mouseup", catNormal)
 catElement.addEventListener("mouseleave", catNormal)
 catElement.addEventListener("mouseout", catNormal)
+catElement.addEventListener("touchend", catNormal)
+catElement.addEventListener("touchcancel", catNormal)

@@ -5,6 +5,13 @@
   font-style: normal;
 }
 
+@font-face {
+  font-family: "Noto Sans Mono";
+  src: url("NotoSansMono-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+}
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -55,7 +62,7 @@ header {
   width: fit-content;
   margin: auto;
   cursor: grab;
-  font-family: monospace;
+  font-family: "Noto Sans Mono", monospace;
   user-select: none;
 }
 

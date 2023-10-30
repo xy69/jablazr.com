@@ -170,7 +170,6 @@
       const catElement = document.getElementById("cat")
 
       const catHappy = (event) => {
-        event.preventDefault()
         catElement.classList.add("grab")
         catElement.innerText = String.raw` ,_     _
  |\\_,-~/
@@ -185,7 +184,6 @@
       }
 
       const catNormal = (event) => {
-        event.preventDefault()
         catElement.classList.remove("grab")
         catElement.innerText = String.raw` ,_     _
  |\\_,-~/

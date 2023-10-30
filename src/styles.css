@@ -1,13 +1,13 @@
 @font-face {
   font-family: "Fira Code";
-  src: url("FiraCode-VF.woff2") format("woff2-variations");
+  src: url("FiraCode-VF-small.woff2") format("woff2-variations");
   font-weight: 300 700;
   font-style: normal;
 }
 
 @font-face {
   font-family: "Noto Sans Mono";
-  src: url("NotoSansMono-Regular.woff2") format("woff2");
+  src: url("NotoSansMono-Regular-small.woff2") format("woff2");
   font-weight: 400;
   font-style: normal;
 }

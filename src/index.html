@@ -3,16 +3,113 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Jaime's personal site." />
 
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
     <link rel="manifest" href="/site.webmanifest" />
 
-    <link rel="stylesheet" href="/styles.css" />
-
     <title>jablazr.com</title>
+
+    <style>
+      @font-face {
+        font-family: "Noto Sans Mono";
+        src: url("NotoSansMono-Regular-small.woff2") format("woff2");
+        font-weight: 400;
+        font-style: normal;
+        font-display: swap;
+      }
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        max-width: 500px;
+        margin: auto;
+        height: 100vh;
+
+        background-color: #000000;
+        background: linear-gradient(
+          90deg,
+          rgba(0, 0, 0, 1) 0%,
+          rgba(43, 43, 43, 1) calc(50% - 250px),
+          rgba(43, 43, 43, 1) calc(50% + 250px),
+          rgba(0, 0, 0, 1) 100%
+        );
+
+        font-family: "Noto Sans Mono", monospace;
+        font-size: 1rem;
+
+        color: #e0e0e0;
+      }
+
+      .content {
+        height: 100%;
+
+        display: flex;
+        flex-direction: column;
+        flex-wrap: nowrap;
+        justify-content: center;
+        align-items: stretch;
+      }
+
+      header {
+        margin: 1rem;
+      }
+
+      .grab {
+        cursor: grabbing !important;
+      }
+
+      #cat {
+        width: fit-content;
+        margin: auto;
+        cursor: grab;
+        font-family: "Noto Sans Mono", monospace;
+        user-select: none;
+      }
+
+      main {
+        text-align: center;
+        margin: 1rem auto;
+        width: fit-content;
+        height: 100%;
+      }
+
+      main ul li {
+        margin: 1rem;
+        list-style: none;
+      }
+
+      .multiline {
+        display: flex;
+        flex-wrap: wrap;
+        align-content: center;
+        justify-content: center;
+        align-items: center;
+        flex-direction: row;
+      }
+
+      .select-me {
+        margin: 1rem auto;
+        padding: 1rem;
+        width: fit-content;
+        cursor: text;
+        text-align: center;
+      }
+
+      a {
+        color: #e0e0e0;
+        text-decoration: underline;
+        width: fit-content;
+      }
+    </style>
   </head>
+
   <body>
     <div class="content">
       <header>
@@ -62,6 +159,51 @@
       </footer>
     </div>
 
-    <script src="/script.js"></script>
+    <script>
+      const catElement = document.getElementById("cat")
+
+      let catText = ""
+      fetch("/cat.txt")
+        .then((response) => response.text())
+        .then((foreignText) => {
+          catText = foreignText
+        })
+
+      let catHappyText = ""
+      fetch("/cat-happy.txt")
+        .then((response) => response.text())
+        .then((foreignText) => {
+          catHappyText = foreignText
+        })
+
+      fetch("https://api.ipify.org/")
+        .then((response) => response.text())
+        .then((ip) => {
+          const ipAddressElement = document.getElementById("ip-address")
+          ipAddressElement.innerText = ip
+        })
+
+      const catHappy = (event) => {
+        event.preventDefault()
+        catElement.classList.add("grab")
+        catElement.innerText = catHappyText
+      }
+
+      catElement.addEventListener("mousedown", catHappy, { passive: true })
+      catElement.addEventListener("touchstart", catHappy, { passive: true })
+      catElement.addEventListener("touchmove", catHappy, { passive: true })
+
+      const catNormal = (event) => {
+        event.preventDefault()
+        catElement.classList.remove("grab")
+        catElement.innerText = catText
+      }
+
+      catElement.addEventListener("mouseup", catNormal, { passive: true })
+      catElement.addEventListener("mouseleave", catNormal, { passive: true })
+      catElement.addEventListener("mouseout", catNormal, { passive: true })
+      catElement.addEventListener("touchend", catNormal, { passive: true })
+      catElement.addEventListener("touchcancel", catNormal, { passive: true })
+    </script>
   </body>
 </html>
